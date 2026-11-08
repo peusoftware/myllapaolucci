@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mylla Paolucci · Edição de vídeos curtos</title>
+  <meta name="description" content="Mylla Paolucci edita vídeos curtos para Reels, TikTok e Shorts com olhar de design de moda: ritmo, composição e cortes pensados para prender a atenção.">
+  <meta name="theme-color" content="#FFFDD0">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:title" content="Mylla Paolucci · Edição de vídeos curtos">
+  <meta property="og:description" content="Vídeos curtos com olhar de moda. Ritmo, composição e cortes pensados para prender a atenção.">
+  <!-- EDITAR: quando houver uma imagem de compartilhamento (1200×630), descomente:
+  <meta property="og:image" content="https://SEU-DOMINIO/og.jpg"> -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2328211F'/%3E%3Ctext x='50%25' y='56%25' text-anchor='middle' dominant-baseline='middle' font-family='Didot,Georgia,serif' font-size='28' fill='%23FFFDD0'%3EMP%3C/text%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..600&family=Geist+Mono:wght@400;500&family=Manrope:wght@400..700&display=swap" rel="stylesheet">
+
+  <!--
+    COMO EDITAR (procure por "EDITAR" nos arquivos)
+    Estrutura:
+      index.html       conteúdo (textos, vídeos, contatos)
+      css/styles.css   visual (cores, fontes, espaçamentos, animações de hover)
+      js/main.js       comportamento (rolagem, timecode, menu, vídeos, WhatsApp)
+      js/boot.js       liga as animações antes de a página aparecer
+      assets/          seus arquivos: assets/videos e assets/img
+
+    1. Vídeos: coloque os .mp4 em assets/videos/ e, em cada <figure class="frame" data-video="">,
+       escreva o caminho. Ex.: data-video="assets/videos/01.mp4"
+       Capa opcional: data-poster="assets/videos/01.jpg"
+    2. Títulos e descrições dos vídeos: blocos .reel__meta.
+    3. Foto: coloque em assets/img/ e troque o <span class="ph"> dentro de .arch pela <img>.
+    4. Pacotes: textos são rascunho. Ajuste itens e valores.
+    5. WhatsApp e e-mail (seção Contato): preencha e apague o atributo hidden.
+       Mensagens prontas do WhatsApp: js/main.js, procure MENSAGEM_.
+  -->
+
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- Sem defer de propósito: precisa rodar antes da primeira pintura. -->
+  <script src="js/boot.js"></script>
+
+</head>
+
+<body id="topo">
+  <a class="skip" href="#conteudo">Pular para o conteúdo</a>
+
+  <div class="progress" aria-hidden="true"><span class="progress__fill"></span></div>
+
+  <header class="nav">
+    <nav class="nav__bar" aria-label="Principal">
+      <a class="nav__brand" href="#topo" aria-label="Mylla Paolucci, voltar ao início">MP<span>.</span></a>
+      <ul class="nav__links">
+        <li><a href="#trabalhos" data-spy="trabalhos">Trabalhos</a></li>
+        <li><a href="#sobre" data-spy="sobre">Sobre</a></li>
+        <li><a href="#pacotes" data-spy="pacotes">Pacotes</a></li>
+        <li><a href="#contato" data-spy="contato">Contato</a></li>
+      </ul>
+      <span class="nav__tc t-label" aria-hidden="true"><b data-tc-now>00:00:00</b><span>/ 00:30</span></span>
+      <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="menu">
+        <span class="sr-only" data-toggle-label>Abrir menu</span>
+        <span class="burger" aria-hidden="true"><i></i><i></i></span>
+      </button>
+    </nav>
+  </header>
+
+  <nav id="menu" class="menu" aria-label="Menu">
+    <ul class="menu__list">
+      <li style="--i:0"><a href="#trabalhos" data-spy="trabalhos">Trabalhos <span data-tc-for="trabalhos">00:07</span></a></li>
+      <li style="--i:1"><a href="#sobre" data-spy="sobre">Sobre <span data-tc-for="sobre">00:15</span></a></li>
+      <li style="--i:2"><a href="#pacotes" data-spy="pacotes">Pacotes <span data-tc-for="pacotes">00:21</span></a></li>
+      <li style="--i:3"><a href="#contato" data-spy="contato">Contato <span data-tc-for="contato">00:28</span></a></li>
+    </ul>
+    <div class="menu__foot t-caption" style="--i:5">
+      <span class="t-label">Instagram @paoluucci</span>
+      <span class="t-label">TikTok @milapaolucci</span>
+      <span class="t-label">Twitch @camomylaa</span>
+    </div>
+  </nav>
+
+  <main id="conteudo" tabindex="-1">
+
+    <!-- ===================== 00:00 · ABERTURA ===================== -->
+    <section class="chapter hero" data-theme="butter" aria-labelledby="hero-title" data-chapter="abertura">
+      <div class="wrap hero__grid">
+        <div class="hero__copy">
+          <p class="label-row t-label" data-intro><span><span class="nowrap">Editora de vídeo ·</span> <span class="nowrap">Estrategista de marketing</span></span></p>
+          <h1 id="hero-title" class="t-display hero__title" data-split="intro">
+            <span class="line">Mylla</span>
+            <span class="line line--2"><em>Paolucci</em></span>
+          </h1>
+          <p class="hero__sub t-lead" data-intro>Vídeos curtos com olhar de moda. Ritmo, composição e cortes pensados para prender a atenção do primeiro ao último segundo.</p>
+          <div class="hero__actions" data-intro>
+            <a class="btn" href="#trabalhos">
+              <span class="btn__label"><span>Ver trabalhos</span><span aria-hidden="true">Ver trabalhos</span></span>
+              <svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 12H20M14 18L20 12L14 6"/></svg>
+            </a>
+            <a class="link" href="#pacotes">Conhecer os pacotes</a>
+          </div>
+        </div>
+
+        <div class="hero__stage" data-hero-stage>
+          <div class="hero__stack">
+            <div class="frame frame--back frame--back-1" aria-hidden="true"></div>
+            <div class="frame frame--back frame--back-2" aria-hidden="true"></div>
+            <!-- EDITAR: vídeo de destaque. Ex.: data-video="assets/videos/destaque.mp4" -->
+            <figure class="frame frame--main" data-video="" data-poster="" data-label="Vídeo em destaque">
+              <div class="frame__screen">
+                <div class="frame__ph">
+                  <span class="frame__play" aria-hidden="true"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M21.4086 9.35258C23.5305 10.5065 23.5305 13.4935 21.4086 14.6474L8.59662 21.6145C6.53435 22.736 4 21.2763 4 18.9671L4 5.0329C4 2.72368 6.53435 1.26402 8.59661 2.38548L21.4086 9.35258Z"/></svg></span>
+                  <span class="t-label">Vídeo em destaque</span>
+                </div>
+              </div>
+              <span class="frame__safe" aria-hidden="true"></span>
+              <div class="frame__hud frame__hud--top t-label" aria-hidden="true"><span>REEL_00</span><span data-tc-now>00:00:00</span></div>
+              <div class="frame__hud frame__hud--bottom t-label" aria-hidden="true"><span class="frame__bar"><i data-progress-var></i></span><span>9:16</span></div>
+              <figcaption class="sr-only">Espaço para o vídeo em destaque</figcaption>
+            </figure>
+            <span class="hero__tag" aria-hidden="true">o corte certo</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="wrap hero__foot t-label" data-intro>
+        <a class="hero__cue" href="#manifesto">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4L12 20M6 14L12 20L18 14"/></svg>
+          Role para assistir
+        </a>
+        <span class="hero__formats">Reels · TikTok · Shorts</span>
+      </div>
+    </section>
+
+    <!-- ===================== 00:03 · MANIFESTO ===================== -->
+    <section id="manifesto" class="chapter manifesto" data-theme="butter" aria-label="Manifesto" data-chapter="manifesto">
+      <div class="wrap">
+        <p class="label-row t-label"><span><span data-tc-for="manifesto">00:03</span> · Manifesto</span></p>
+        <p class="t-manifesto manifesto__text" data-words>Na moda e na edição, tudo começa no <em>corte.</em> Escolho cada um para que ninguém queira pular o seu vídeo.</p>
+      </div>
+    </section>
+
+    <!-- ===================== 00:07 · TRABALHOS ===================== -->
+    <section id="trabalhos" class="chapter works" data-theme="dark" data-expand aria-labelledby="works-title" data-chapter="trabalhos">
+      <div class="chapter__bg" aria-hidden="true"></div>
+      <div class="wrap works__pin">
+        <header class="works__head" data-reveal>
+          <p class="label-row t-label"><span><span data-tc-for="trabalhos">00:07</span> · Trabalhos</span></p>
+          <h2 id="works-title" class="t-h2">Vídeos <em>curtos</em></h2>
+          <p class="t-body">Uma amostra de projetos recentes. A fluidez da moda traduzida para a velocidade das redes sociais.</p>
+          <div class="works__now">
+            <span class="works__count t-label" aria-hidden="true"><b data-now>01</b> / <span data-total>04</span></span>
+            <span class="works__meter" aria-hidden="true"><i data-works-meter></i></span>
+            <span class="works__nav">
+              <button class="works__btn" type="button" data-works-prev aria-label="Vídeo anterior">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 12H4M10 18L4 12L10 6"/></svg>
+              </button>
+              <button class="works__btn" type="button" data-works-next aria-label="Próximo vídeo">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 12H20M14 18L20 12L14 6"/></svg>
+              </button>
+            </span>
+          </div>
+          <div>
+            <a class="link" href="https://www.tiktok.com/@milapaolucci" target="_blank" rel="noopener">
+              Ver mais no TikTok
+              <svg class="btn__icon btn__icon--diag" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M18 15V6H9"/></svg>
+              <span class="sr-only">(abre em nova aba)</span>
+            </a>
+          </div>
+        </header>
+
+        <div class="works__clip">
+          <div class="works__viewport">
+            <ol class="works__track">
+              <!-- EDITAR: repita um <li class="reel"> por vídeo. -->
+              <li class="reel">
+                <figure class="frame" data-video="" data-poster="" data-label="Vídeo 01">
+                  <div class="frame__screen">
+                    <div class="frame__ph">
+                      <span class="frame__play" aria-hidden="true"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M21.4086 9.35258C23.5305 10.5065 23.5305 13.4935 21.4086 14.6474L8.59662 21.6145C6.53435 22.736 4 21.2763 4 18.9671L4 5.0329C4 2.72368 6.53435 1.26402 8.59661 2.38548L21.4086 9.35258Z"/></svg></span>
+                      <span class="t-label">Espaço para o vídeo</span>
+                    </div>
+                  </div>
+                  <span class="frame__safe" aria-hidden="true"></span>
+                  <div class="frame__hud frame__hud--top t-label" aria-hidden="true"><span>REEL_01</span><span>9:16</span></div>
+                </figure>
+                <div class="reel__meta">
+                  <p class="reel__top t-label"><span>01</span><span>Plataforma</span></p>
+                  <h3 class="reel__title">Vídeo 01</h3>
+                  <p class="reel__info t-caption">Título e cliente a definir</p>
+                </div>
+              </li>
+              <li class="reel">
+                <figure class="frame" data-video="" data-poster="" data-label="Vídeo 02">
+                  <div class="frame__screen">
+                    <div class="frame__ph">
+                      <span class="frame__play" aria-hidden="true"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M21.4086 9.35258C23.5305 10.5065 23.5305 13.4935 21.4086 14.6474L8.59662 21.6145C6.53435 22.736 4 21.2763 4 18.9671L4 5.0329C4 2.72368 6.53435 1.26402 8.59661 2.38548L21.4086 9.35258Z"/></svg></span>
+                      <span class="t-label">Espaço para o vídeo</span>
+                    </div>
+                  </div>
+                  <span class="frame__safe" aria-hidden="true"></span>
+                  <div class="frame__hud frame__hud--top t-label" aria-hidden="true"><span>REEL_02</span><span>9:16</span></div>
+                </figure>
+                <div class="reel__meta">
+                  <p class="reel__top t-label"><span>02</span><span>Plataforma</span></p>
+                  <h3 class="reel__title">Vídeo 02</h3>
+                  <p class="reel__info t-caption">Título e cliente a definir</p>
+                </div>
+              </li>
+              <li class="reel">
+                <figure class="frame" data-video="" data-poster="" data-label="Vídeo 03">
+                  <div class="frame__screen">
+                    <div class="frame__ph">
+                      <span class="frame__play" aria-hidden="true"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M21.4086 9.35258C23.5305 10.5065 23.5305 13.4935 21.4086 14.6474L8.59662 21.6145C6.53435 22.736 4 21.2763 4 18.9671L4 5.0329C4 2.72368 6.53435 1.26402 8.59661 2.38548L21.4086 9.35258Z"/></svg></span>
+                      <span class="t-label">Espaço para o vídeo</span>
+                    </div>
+                  </div>
+                  <span class="frame__safe" aria-hidden="true"></span>
+                  <div class="frame__hud frame__hud--top t-label" aria-hidden="true"><span>REEL_03</span><span>9:16</span></div>
+                </figure>
+                <div class="reel__meta">
+                  <p class="reel__top t-label"><span>03</span><span>Plataforma</span></p>
+                  <h3 class="reel__title">Vídeo 03</h3>
+                  <p class="reel__info t-caption">Título e cliente a definir</p>
+                </div>
+              </li>
+              <li class="reel">
+                <figure class="frame" data-video="" data-poster="" data-label="Vídeo 04">
+                  <div class="frame__screen">
+                    <div class="frame__ph">
+                      <span class="frame__play" aria-hidden="true"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M21.4086 9.35258C23.5305 10.5065 23.5305 13.4935 21.4086 14.6474L8.59662 21.6145C6.53435 22.736 4 21.2763 4 18.9671L4 5.0329C4 2.72368 6.53435 1.26402 8.59661 2.38548L21.4086 9.35258Z"/></svg></span>
+                      <span class="t-label">Espaço para o vídeo</span>
+                    </div>
+                  </div>
+                  <span class="frame__safe" aria-hidden="true"></span>
+                  <div class="frame__hud frame__hud--top t-label" aria-hidden="true"><span>REEL_04</span><span>9:16</span></div>
+                </figure>
+                <div class="reel__meta">
+                  <p class="reel__top t-label"><span>04</span><span>Plataforma</span></p>
+                  <h3 class="reel__title">Vídeo 04</h3>
+                  <p class="reel__info t-caption">Título e cliente a definir</p>
+                </div>
+              </li>
+            </ol>
+          </div>
+        </div>
+        <p class="sr-only" role="status" data-works-status></p>
+      </div>
+    </section>
+
+    <!-- ===================== 00:15 · SOBRE ===================== -->
+    <section id="sobre" class="chapter about" data-theme="paper" aria-labelledby="about-title" data-chapter="sobre">
+      <div class="wrap about__grid">
+        <div class="about__media">
+          <div class="arch" data-clip>
+            <!-- EDITAR: troque o <span class="ph"> abaixo por:
+                 <img src="assets/img/retrato.jpg" alt="Retrato de Mylla Paolucci" width="840" height="1050" loading="lazy" decoding="async"> -->
+            <span class="ph"><span class="t-label">Foto · 4:5</span><span class="t-caption">Retrato da Mylla</span></span>
+          </div>
+          <p class="about__caption t-label">Mylla Paolucci · Design de Moda</p>
+        </div>
+
+        <div class="about__copy" data-reveal>
+          <p class="label-row t-label"><span><span data-tc-for="sobre">00:15</span> · Sobre</span></p>
+          <h2 id="about-title" class="t-h2">A essência <em>da edição</em></h2>
+          <!-- EDITAR: confira o nome da instituição. "UFCI" veio do arquivo original. -->
+          <p class="t-lead measure">Sou graduanda em <strong>Design de Moda</strong> pela <strong>UFCI (campus Divinópolis)</strong>. A formação refinou meu olhar estético: aplico composição, ritmo visual e harmonia em cada vídeo que edito.</p>
+          <p class="t-body measure muted">São <strong>5&nbsp;anos de experiência prática</strong> em marketing e edição de vídeo, o que me deu um entendimento afiado sobre o comportamento do público digital.</p>
+          <dl class="facts">
+            <div class="fact"><dt>de experiência em marketing e edição</dt><dd>5&nbsp;anos</dd></div>
+            <div class="fact"><dt>especialidade em vídeos curtos para Reels, TikTok e Shorts</dt><dd>9:16</dd></div>
+            <div class="fact"><dt>é o foco de cada corte, com dinamismo e engajamento</dt><dd><em>Retenção</em></dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- faixa de formatos: ponte visual entre "Sobre" e "Pacotes" -->
+    <div class="chapter band" data-theme="pink" aria-hidden="true">
+      <div class="band__track" data-band>
+        <span>Reels <b>✦</b> TikTok <b>✦</b> Shorts <b>✦</b> Ritmo <b>✦</b> Composição <b>✦</b> Retenção <b>✦</b></span>
+        <span>Reels <b>✦</b> TikTok <b>✦</b> Shorts <b>✦</b> Ritmo <b>✦</b> Composição <b>✦</b> Retenção <b>✦</b></span>
+      </div>
+    </div>
+
+    <!-- ===================== 00:21 · PACOTES ===================== -->
+    <!-- EDITAR: os pacotes abaixo são um RASCUNHO. Ajuste nomes, itens e valores com a Mylla. -->
+    <section id="pacotes" class="chapter packages" data-theme="paper" aria-labelledby="packages-title" data-chapter="pacotes">
+      <div class="wrap">
+        <header class="section-head" data-reveal>
+          <p class="label-row t-label"><span><span data-tc-for="pacotes">00:21</span> · Pacotes</span></p>
+          <h2 id="packages-title" class="t-h2">Pacotes de <em>edição</em></h2>
+          <p class="t-body">Escolha o formato que combina com o seu ritmo de publicação. Os valores são enviados sob consulta, de acordo com o volume e a complexidade do material.</p>
+        </header>
+
+        <ul class="plans" data-reveal>
+          <li class="plan" data-theme="paper">
+            <p class="plan__top t-label"><span>01</span><span>Pontual</span></p>
+            <h3 class="t-h3">Avulso</h3>
+            <p class="plan__desc t-body">Para testar o formato ou dar força a um lançamento específico.</p>
+            <p class="plan__price"><span class="t-label muted">Investimento</span><strong>Sob consulta</strong></p>
+            <ul class="plan__list t-body">
+              <li>1 vídeo curto editado em 9:16</li>
+              <li>Legendas e trilha sincronizadas</li>
+              <li>1 rodada de ajustes</li>
+            </ul>
+            <a class="btn btn--ghost" href="#contato" data-plan-cta="Avulso">
+              <span class="btn__label"><span>Pedir orçamento<span class="sr-only"> do pacote Avulso</span></span><span aria-hidden="true">Pedir orçamento</span></span>
+            </a>
+          </li>
+          <li class="plan" data-theme="pink">
+            <p class="plan__top t-label"><span>02</span><span>Recorrente</span></p>
+            <h3 class="t-h3">Mensal</h3>
+            <p class="plan__desc t-body">Para quem publica toda semana e quer constância sem perder qualidade.</p>
+            <p class="plan__price"><span class="t-label muted">Investimento</span><strong>Sob consulta</strong></p>
+            <ul class="plan__list t-body">
+              <li>Pacote de vídeos por mês</li>
+              <li>Linha visual consistente entre os vídeos</li>
+              <li>Cortes alinhados à sua estratégia</li>
+              <li>Prioridade na agenda de entregas</li>
+            </ul>
+            <a class="btn" href="#contato" data-plan-cta="Mensal">
+              <span class="btn__label"><span>Pedir orçamento<span class="sr-only"> do pacote Mensal</span></span><span aria-hidden="true">Pedir orçamento</span></span>
+              <svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 12H20M14 18L20 12L14 6"/></svg>
+            </a>
+          </li>
+          <li class="plan" data-theme="paper">
+            <p class="plan__top t-label"><span>03</span><span>Projeto</span></p>
+            <h3 class="t-h3">Sob medida</h3>
+            <p class="plan__desc t-body">Para marcas, campanhas e cortes de lives com formato combinado.</p>
+            <p class="plan__price"><span class="t-label muted">Investimento</span><strong>Sob consulta</strong></p>
+            <ul class="plan__list t-body">
+              <li>Escopo e prazos definidos juntos</li>
+              <li>Cortes de lives e conteúdos longos</li>
+              <li>Planejamento de conteúdo para redes</li>
+            </ul>
+            <a class="btn btn--ghost" href="#contato" data-plan-cta="Sob medida">
+              <span class="btn__label"><span>Pedir orçamento<span class="sr-only"> do pacote Sob medida</span></span><span aria-hidden="true">Pedir orçamento</span></span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="steps">
+          <h3 class="t-h3 steps__title" data-split>Como funciona</h3>
+          <ol class="steps__list" data-reveal>
+            <li class="step">
+              <span class="t-label">01 · Briefing</span>
+              <h4>Você conta o objetivo</h4>
+              <p class="t-body">Envie o material bruto, as referências que gosta e onde o vídeo vai ser publicado.</p>
+            </li>
+            <li class="step">
+              <span class="t-label">02 · Edição</span>
+              <h4>Eu monto o ritmo</h4>
+              <p class="t-body">Corte, legendas e trilha pensados para segurar quem assiste até o fim.</p>
+            </li>
+            <li class="step">
+              <span class="t-label">03 · Entrega</span>
+              <h4>Pronto para postar</h4>
+              <p class="t-body">Vídeo final em 9:16, com uma rodada de ajustes incluída antes da publicação.</p>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== 00:30 · CONTATO ===================== -->
+    <section id="contato" class="chapter contact" data-theme="dark" data-expand aria-labelledby="contact-title" data-chapter="contato">
+      <div class="chapter__bg" aria-hidden="true"></div>
+      <div class="wrap">
+        <header class="contact__head">
+          <p class="label-row t-label"><span><span data-tc-for="contato">00:28</span> · Contato</span></p>
+          <h2 id="contact-title" class="contact__title" data-split>Vamos trabalhar <em>juntos?</em></h2>
+          <p class="contact__lead t-lead">Conte o que você quer publicar e em que ritmo. Escolha o canal que preferir.</p>
+        </header>
+
+        <ul class="channels" data-reveal>
+          <!-- EDITAR · WHATSAPP (fica escondido até ser preenchido)
+               1. No href, troque 55DDDNUMERO pelo número só com dígitos: 55 + DDD + número.
+                  Ex.: (37) 99876-5432 vira 5537998765432
+               2. Troque o texto "(DDD) 00000-0000" pelo número formatado.
+               3. Apague o atributo hidden do <li>.
+               Com o número preenchido, os botões "Pedir orçamento" dos pacotes passam a
+               abrir o WhatsApp com uma mensagem pronta. Textos: js/main.js, procure MENSAGEM_. -->
+          <li hidden data-contact="whatsapp">
+            <a class="channel" href="https://wa.me/55DDDNUMERO" target="_blank" rel="noopener">
+              <span class="channel__name">WhatsApp</span>
+              <span class="channel__handle">(DDD) 00000-0000</span>
+              <span class="channel__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M18 15V6H9"/></svg></span>
+              <span class="sr-only">(abre o WhatsApp em nova aba)</span>
+            </a>
+          </li>
+          <!-- EDITAR · E-MAIL (fica escondido até ser preenchido)
+               Troque SEU@EMAIL.com nos 2 lugares (href e texto) e apague o atributo hidden.
+               O assunto do e-mail é preenchido sozinho: js/main.js, procure ASSUNTO_EMAIL. -->
+          <li hidden data-contact="email">
+            <div class="channel">
+              <span class="channel__name">Email</span>
+              <a class="channel__handle channel__mail" id="email-handle" href="mailto:SEU@EMAIL.com">SEU@EMAIL.com</a>
+              <button class="btn btn--sm copy" type="button" data-copy-done="Email copiado" aria-describedby="email-handle">
+                <span class="copy__icons" aria-hidden="true">
+                  <svg class="i-copy" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path d="M12 22H15C17.8284 22 19.2426 22 20.1213 21.1213C21 20.2426 21 18.8284 21 16V11C21 8.17157 21 6.75736 20.1213 5.87868C19.2426 5 17.8284 5 15 5H12C9.17157 5 7.75736 5 6.87868 5.87868C6 6.75736 6 8.17157 6 11V16C6 18.8284 6 20.2426 6.87868 21.1213C7.75736 22 9.17157 22 12 22Z"/><path d="M6 19C4.34315 19 3 17.6569 3 16V10C3 6.22876 3 4.34315 4.17157 3.17157C5.34315 2 7.22876 2 11 2H15C16.6569 2 18 3.34315 18 5"/></g></svg>
+                  <svg class="i-check" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path stroke-linejoin="round" d="M8.5 12.5L10.5 14.5L15.5 9.5"/></g></svg>
+                </span>
+                <span data-copy-label>Copiar email</span>
+              </button>
+            </div>
+          </li>
+          <li>
+            <a class="channel" href="https://www.instagram.com/paoluucci/" target="_blank" rel="noopener">
+              <span class="channel__name">Instagram</span>
+              <span class="channel__handle">@paoluucci</span>
+              <span class="channel__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M18 15V6H9"/></svg></span>
+              <span class="sr-only">(abre em nova aba)</span>
+            </a>
+          </li>
+          <li>
+            <a class="channel" href="https://www.tiktok.com/@milapaolucci" target="_blank" rel="noopener">
+              <span class="channel__name">TikTok</span>
+              <span class="channel__handle">@milapaolucci</span>
+              <span class="channel__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M18 15V6H9"/></svg></span>
+              <span class="sr-only">(abre em nova aba)</span>
+            </a>
+          </li>
+          <li>
+            <a class="channel" href="https://www.twitch.tv/camomylaa" target="_blank" rel="noopener">
+              <span class="channel__name">Twitch</span>
+              <span class="channel__handle">@camomylaa</span>
+              <span class="channel__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M18 15V6H9"/></svg></span>
+              <span class="sr-only">(abre em nova aba)</span>
+            </a>
+          </li>
+        </ul>
+        <p class="sr-only" role="status" data-copy-status></p>
+      </div>
+
+      <footer class="wrap footer t-caption">
+        <p>© <span data-year>2026</span> Mylla Paolucci Lousada Cardoso. Todos os direitos reservados.</p>
+        <a class="link" href="#topo">
+          Voltar ao topo
+          <svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 20L12 4M6 10L12 4L18 10"/></svg>
+        </a>
+      </footer>
+    </section>
+  </main>
+
+  <!-- Bibliotecas de movimento (versões fixas). Se falharem, a página continua completa e estática. -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
