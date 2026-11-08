@@ -564,6 +564,15 @@ html.nav-on-dark .burger { color: var(--ink-900); }
   transition: scale 600ms var(--ease-out);
 }
 .frame__screen video { width: 100%; height: 100%; object-fit: cover; }
+/* vídeo horizontal: quadro inteiro, centralizado, sobre a capa desfocada */
+.frame.is-landscape .frame__screen video { position: relative; object-fit: contain; }
+.frame.is-landscape .frame__screen::before {
+  content: "";
+  position: absolute;
+  inset: -24px;
+  background: var(--poster, none) center / cover no-repeat;
+  filter: blur(20px) brightness(.55);
+}
 .frame__ph {
   display: grid;
   justify-items: center;
@@ -710,6 +719,27 @@ html.motion .chapter[data-expand] > .chapter__bg {
   line-height: 1.5;
   white-space: nowrap;
 }
+/* legenda do vídeo em destaque, abaixo da pilha de molduras */
+.hero__credit {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: var(--s-50) var(--s-100);
+  max-width: 340px;
+  margin-block-start: var(--s-500);
+  color: var(--fg-muted);
+  text-align: center;
+}
+.hero__credit-title {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1rem;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--fg);
+}
+.hero__credit .reel__link { text-transform: none; letter-spacing: 0; }
 .hero__foot {
   display: flex;
   justify-content: space-between;
@@ -800,6 +830,7 @@ html.motion .chapter[data-expand] > .chapter__bg {
   scale: var(--p, 0) 1;
 }
 .works__viewport {
+  position: relative; /* contém elementos absolutos (ex.: textos sr-only) dentro da rolagem */
   margin-inline: calc(var(--gutter) * -1);
   overflow-x: auto;
   overscroll-behavior-x: contain;
@@ -828,6 +859,27 @@ html.motion .chapter[data-expand] > .chapter__bg {
 .reel__top { display: flex; justify-content: space-between; gap: var(--s-200); color: var(--fg-muted); }
 .reel__title { font-family: var(--font-text); font-weight: 600; font-size: 1.125rem; line-height: 1.4; }
 .reel__info { color: var(--fg-muted); }
+/* conta/cliente do vídeo: link para o perfil ou o vídeo original */
+.reel__link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-50);
+  padding-block: var(--s-50);
+  margin-block: calc(var(--s-50) * -1);
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: from-font;
+  text-underline-offset: 3px;
+  overflow-wrap: anywhere;
+  transition: color var(--dur-hover) var(--ease-out);
+}
+.reel__link svg { width: 14px; height: 14px; flex: none; transition: translate var(--dur-ui) var(--ease-out); }
+@media (hover: hover) {
+  .reel__link:hover { color: var(--fg); }
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .reel__link:hover svg { translate: 2px -2px; }
+}
 @media (hover: hover) {
   .reel:hover .frame__play { background: var(--paper); color: var(--ink-900); }
 }

@@ -271,12 +271,21 @@
      ------------------------------------------------------------ */
   var ICON_PLAY = '<svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21.4086 9.35258C23.5305 10.5065 23.5305 13.4935 21.4086 14.6474L8.59662 21.6145C6.53435 22.736 4 21.2763 4 18.9671L4 5.0329C4 2.72368 6.53435 1.26402 8.59661 2.38548L21.4086 9.35258Z"/></svg>';
   var ICON_PAUSE = '<svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M2 6C2 4.11438 2 3.17157 2.58579 2.58579C3.17157 2 4.11438 2 6 2C7.88562 2 8.82843 2 9.41421 2.58579C10 3.17157 10 4.11438 10 6V18C10 19.8856 10 20.8284 9.41421 21.4142C8.82843 22 7.88562 22 6 22C4.11438 22 3.17157 22 2.58579 21.4142C2 20.8284 2 19.8856 2 18V6Z"/><path fill="currentColor" d="M14 6C14 4.11438 14 3.17157 14.5858 2.58579C15.1716 2 16.1144 2 18 2C19.8856 2 20.8284 2 21.4142 2.58579C22 3.17157 22 4.11438 22 6V18C22 19.8856 22 20.8284 21.4142 21.4142C20.8284 22 19.8856 22 18 22C16.1144 22 15.1716 22 14.5858 21.4142C14 20.8284 14 19.8856 14 18V6Z"/></svg>';
+  /* Toca só o que está à vista. Na fita de trabalhos, só o vídeo ativo
+     (o de brilho total) toca; os vizinhos ficam pausados na capa. */
+  function syncPlayback(frame) {
+    var v = frame.__video;
+    if (!v) return;
+    var reel = frame.closest('.reel');
+    var isActiveReel = !reel || !works.hasAttribute('data-has-active') || reel.hasAttribute('data-active');
+    var shouldPlay = frame.__inView && isActiveReel && !v.__userPaused && !reduce;
+    if (shouldPlay && v.paused) v.play().catch(function () {});
+    else if (!shouldPlay && !v.paused) v.pause();
+  }
   var videoIO = new IntersectionObserver(function (entries) {
     entries.forEach(function (e) {
-      var v = e.target.__video;
-      if (!v || v.__userPaused || reduce) return;
-      if (e.isIntersecting) v.play().catch(function () {});
-      else v.pause();
+      e.target.__inView = e.isIntersecting;
+      syncPlayback(e.target);
     });
   }, { threshold: 0.6 });
   $$('.frame[data-video]').forEach(function (frame) {
@@ -293,8 +302,18 @@
     var poster = (frame.getAttribute('data-poster') || '').trim();
     if (poster) v.poster = poster;
     v.setAttribute('aria-label', name);
-    $('.frame__screen', frame).replaceChildren(v);
+    var screen = $('.frame__screen', frame);
+    screen.replaceChildren(v);
     frame.classList.add('has-video');
+    /* Vídeo horizontal numa moldura vertical: mostra o quadro inteiro (sem cortar
+       quem está na borda) sobre a própria capa desfocada, e corrige o rótulo 9:16. */
+    /* endereço absoluto: url() numa variável CSS seria resolvido a partir de css/ */
+    if (poster) screen.style.setProperty('--poster', 'url("' + new URL(poster, document.baseURI).href + '")');
+    v.addEventListener('loadedmetadata', function () {
+      if (v.videoWidth <= v.videoHeight) return;
+      frame.classList.add('is-landscape');
+      $$('.frame__hud span', frame).forEach(function (s) { if (s.textContent === '9:16') s.textContent = '16:9'; });
+    });
 
     var btn = document.createElement('button');
     btn.type = 'button';
@@ -335,10 +354,15 @@
     if (prevBtn) prevBtn.disabled = currentIndex <= 0;
     if (nextBtn) nextBtn.disabled = currentIndex >= reels.length - 1;
   }
+  var lastActive = -1;
   function setActive(index, progress) {
     currentIndex = index;
     works.setAttribute('data-has-active', '');
     reels.forEach(function (r, i) { if (i === index) r.setAttribute('data-active', ''); else r.removeAttribute('data-active'); });
+    if (index !== lastActive) {
+      lastActive = index;
+      reels.forEach(function (r) { var f = $('.frame', r); if (f) syncPlayback(f); });
+    }
     if (nowEl) nowEl.textContent = pad(index + 1);
     if (meterEl) meterEl.style.setProperty('--p', progress);
     updateStripButtons();
