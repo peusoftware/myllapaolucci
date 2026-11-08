@@ -389,6 +389,8 @@
      ------------------------------------------------------------ */
   var VIEWS = window.PORTFOLIO_VIEWS || {};
   var viewsFmt = new Intl.NumberFormat('pt-BR', { notation: 'compact', maximumFractionDigits: 1 });
+  /* total por extenso: "1,6 milhão", "2,3 milhões", "12 mil" */
+  var viewsFmtLong = new Intl.NumberFormat('pt-BR', { notation: 'compact', compactDisplay: 'long', maximumFractionDigits: 1 });
   var shownViews = 0;
   /* Aceita o número do jeito que for digitado: 3171, '3,171', '3.171', '12 mil', '1,2 mi', '15k'. */
   function parseViews(value) {
@@ -445,7 +447,7 @@
   var totalEl = $('[data-views-total]');
   if (totalEl && totalViews > 0) {
     /* "mais de X": X arredondado PARA BAIXO, para a frase ser sempre verdadeira
-       (1.603.509 → "mais de 1,6 mi"; 1.599.000 → "mais de 1,5 mi") */
+       (1.603.509 → "mais de 1,6 milhão"; 1.599.000 → "mais de 1,5 milhão") */
     var step = totalViews >= 1e6 ? 1e5 : (totalViews >= 1e3 ? 100 : 1);
     var shown = Math.floor(totalViews / step) * step;
     var numEl = $('[data-views-total-num]', totalEl);
@@ -456,7 +458,7 @@
       numEl.appendChild(prefix);
     }
     /* a vírgula do Bodoni é fina demais e parece ponto: desenha com a fonte do texto */
-    viewsFmt.format(shown).split(/(,)/).forEach(function (part) {
+    viewsFmtLong.format(shown).split(/(,)/).forEach(function (part) {
       if (part !== ',') { numEl.appendChild(document.createTextNode(part)); return; }
       var sep = document.createElement('span');
       sep.className = 'works__total-sep';
