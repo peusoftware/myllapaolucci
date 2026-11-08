@@ -651,6 +651,13 @@ html.nav-on-dark .burger { color: var(--ink-900); }
 .frame__toggle .i-play { opacity: 0; scale: .25; filter: blur(4px); }
 .frame__toggle[data-state="paused"] .i-play { opacity: 1; scale: 1; filter: blur(0); }
 .frame__toggle[data-state="paused"] .i-pause { opacity: 0; scale: .25; filter: blur(4px); }
+/* botão de som: à esquerda do de pausa (44px do botão + 8px de espaço) */
+.frame__sound { inset-inline-end: calc(var(--s-100) + 44px + var(--s-75)); }
+.frame__sound svg { width: 18px; height: 18px; }
+.frame__sound .i-sound-on { opacity: 0; scale: .25; filter: blur(4px); }
+.frame__sound[data-state="on"] .i-sound-on { opacity: 1; scale: 1; filter: blur(0); }
+.frame__sound[data-state="on"] .i-sound-off { opacity: 0; scale: .25; filter: blur(4px); }
+.frame__sound[data-state="on"] { background: var(--paper); color: var(--ink-900); }
 
 /* ============================================================
    7. CAPÍTULOS
