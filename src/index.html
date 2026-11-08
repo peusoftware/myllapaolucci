@@ -35,6 +35,7 @@
     4. Pacotes: textos são rascunho. Ajuste itens e valores.
     5. WhatsApp e e-mail (seção Contato): preencha e apague o atributo hidden.
        Mensagens prontas do WhatsApp: js/main.js, procure MENSAGEM_.
+    6. Views dos vídeos: js/views.js (número de cada vídeo + data da atualização).
   -->
 
   <link rel="stylesheet" href="css/styles.css">
@@ -160,12 +161,14 @@
               </button>
             </span>
           </div>
-          <div>
-            <a class="link" href="https://www.instagram.com/paoluucci/" target="_blank" rel="noopener">
-              Ver mais no Instagram
-              <svg class="btn__icon btn__icon--diag" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M18 15V6H9"/></svg>
-              <span class="sr-only">(abre em nova aba)</span>
-            </a>
+          <!-- Total de views + links para as duas redes. Sem total, a frase vira "Ver mais no…" -->
+          <div class="works__total">
+            <p class="works__total-num" data-views-total hidden><span data-views-total-num></span> <span class="works__total-unit">views</span></p>
+            <p class="works__more"><span data-views-lead>Ver mais no</span>
+              <a class="link" href="https://www.instagram.com/paoluucci/" target="_blank" rel="noopener">Instagram<svg class="btn__icon btn__icon--diag" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M18 15V6H9"/></svg><span class="sr-only"> @paoluucci (abre em nova aba)</span></a>
+              e no
+              <a class="link" href="https://www.tiktok.com/@milapaolucci" target="_blank" rel="noopener">TikTok<svg class="btn__icon btn__icon--diag" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M18 15V6H9"/></svg><span class="sr-only"> @milapaolucci (abre em nova aba)</span></a>
+            </p>
           </div>
         </header>
 
@@ -290,6 +293,24 @@
                   <p class="reel__top t-label"><span>07</span><span>Instagram</span></p>
                   <h3 class="reel__title">Press Kit Maréa Arte</h3>
                   <p class="reel__info t-caption"><a class="reel__link" href="https://www.instagram.com/p/DalINI1BpQB/" target="_blank" rel="noopener">@mareaarte.atelie<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M18 15V6H9"/></svg><span class="sr-only">: ver a publicação no Instagram (abre em nova aba)</span></a></p>
+                </div>
+              </li>
+              <!-- EDITAR: título e link direto do vídeo 08 -->
+              <li class="reel">
+                <figure class="frame" data-video="assets/videos/08.mp4" data-poster="assets/videos/08.jpg" data-label="Vídeo 08">
+                  <div class="frame__screen">
+                    <div class="frame__ph">
+                      <span class="frame__play" aria-hidden="true"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M21.4086 9.35258C23.5305 10.5085 23.5305 13.4935 21.4086 14.6474L8.59662 21.6145C6.53435 22.736 4 21.2763 4 18.9671L4 5.0329C4 2.72368 6.53435 1.26402 8.59661 2.38548L21.4086 9.35258Z"/></svg></span>
+                      <span class="t-label">Espaço para o vídeo</span>
+                    </div>
+                  </div>
+                  <span class="frame__safe" aria-hidden="true"></span>
+                  <div class="frame__hud frame__hud--top t-label" aria-hidden="true"><span>REEL_08</span><span>9:16</span></div>
+                </figure>
+                <div class="reel__meta">
+                  <p class="reel__top t-label"><span>08</span><span>TikTok</span></p>
+                  <h3 class="reel__title">Vídeo 08</h3>
+                  <p class="reel__info t-caption"><a class="reel__link" href="https://www.tiktok.com/@milapaolucci/video/7327361483770203397" target="_blank" rel="noopener">@milapaolucci<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M18 15V6H9"/></svg><span class="sr-only">: ver o vídeo no TikTok (abre em nova aba)</span></a></p>
                 </div>
               </li>
             </ol>
@@ -498,6 +519,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
 
+  <script src="js/views.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

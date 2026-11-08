@@ -337,6 +337,94 @@
   });
 
   /* ------------------------------------------------------------
+     Views (preenchidas à mão em js/views.js). A chave é o nome do
+     arquivo do vídeo: assets/videos/01.mp4 → '01'. Sem número, nada aparece.
+     ------------------------------------------------------------ */
+  var VIEWS = window.PORTFOLIO_VIEWS || {};
+  var viewsFmt = new Intl.NumberFormat('pt-BR', { notation: 'compact', maximumFractionDigits: 1 });
+  var shownViews = 0;
+  /* Aceita o número do jeito que for digitado: 3171, '3,171', '3.171', '12 mil', '1,2 mi', '15k'. */
+  function parseViews(value) {
+    if (typeof value === 'number') return isFinite(value) ? Math.round(value) : 0;
+    if (typeof value !== 'string') return 0;
+    var t = value.trim().toLowerCase();
+    /* sufixos: "mi", "milhões", "M" (1,4M) e "mil", "k" (15k) */
+    var mult = /(\d|\s)(mi|milh[õo]es|milh[ãa]o|m)\s*$/.test(t) ? 1e6 : (/(\d|\s)(mil|k)\s*$/.test(t) ? 1e3 : 1);
+    var digits = t.replace(/[^\d.,]/g, '');
+    if (!digits) return 0;
+    if (mult > 1) return Math.round(parseFloat(digits.replace(/\./g, '').replace(',', '.')) * mult) || 0;
+    return parseInt(digits.replace(/[.,]/g, ''), 10) || 0; /* "3,171" e "3.171" = 3171 */
+  }
+  function viewsOfFrame(frame) {
+    var key = (frame.getAttribute('data-video') || '').split('/').pop().replace(/\.[^.]+$/, '');
+    return parseViews(VIEWS.videos && VIEWS.videos[key]);
+  }
+  var totalViews = 0;
+  var siteByNetwork = { instagram: 0, tiktok: 0 };
+
+  /* A fita segue a ordem do HTML (01, 02… 08). Para mudar a ordem,
+     mova os blocos <li class="reel"> no index.html. */
+
+  $$('.frame[data-video]').forEach(function (frame) {
+    var n = viewsOfFrame(frame);
+    if (n <= 0) return;
+    /* soma por rede (pelo link do crédito: tiktok.com ou instagram.com) */
+    var creditLink = frame.closest('.reel') ? $('.reel__link', frame.closest('.reel')) : $('.hero__credit .reel__link');
+    siteByNetwork[creditLink && /tiktok\.com/.test(creditLink.href) ? 'tiktok' : 'instagram'] += n;
+    /* no lugar do "REEL_xx" no canto da moldura */
+    var hudLabel = $('.frame__hud--top span', frame);
+    if (!hudLabel) return;
+    hudLabel.className = 'frame__views';
+    hudLabel.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21.4086 9.35258C23.5305 10.5065 23.5305 13.4935 21.4086 14.6474L8.59662 21.6145C6.53435 22.736 4 21.2763 4 18.9671L4 5.0329C4 2.72368 6.53435 1.26402 8.59661 2.38548L21.4086 9.35258Z"/></svg>';
+    hudLabel.appendChild(document.createTextNode(viewsFmt.format(n) + ' views'));
+    /* o canto é decorativo (aria-hidden); leitores de tela ouvem junto do título */
+    var sr = document.createElement('span');
+    sr.className = 'sr-only';
+    sr.textContent = ', ' + n.toLocaleString('pt-BR') + ' visualizações';
+    var reel = frame.closest('.reel');
+    var titleEl = reel ? $('.reel__title', reel) : $('.hero__credit-title');
+    if (titleEl) titleEl.appendChild(sr);
+    shownViews++;
+  });
+  /* Total nas redes: para cada rede, o maior entre o total informado em
+     views.js (redes) e a soma dos vídeos daquela rede que estão no site.
+     Os dois são pisos verdadeiros, então "mais de" continua correto. */
+  var NETWORKS = [['instagram', 'Instagram'], ['tiktok', 'TikTok']];
+  var usedNetworks = [];
+  NETWORKS.forEach(function (net) {
+    var v = Math.max(parseViews((VIEWS.redes || {})[net[0]]), siteByNetwork[net[0]]);
+    if (v > 0) { totalViews += v; usedNetworks.push(net[1]); }
+  });
+  var totalEl = $('[data-views-total]');
+  if (totalEl && totalViews > 0) {
+    /* "mais de X": X arredondado PARA BAIXO, para a frase ser sempre verdadeira
+       (1.603.509 → "mais de 1,6 mi"; 1.599.000 → "mais de 1,5 mi") */
+    var step = totalViews >= 1e6 ? 1e5 : (totalViews >= 1e3 ? 100 : 1);
+    var shown = Math.floor(totalViews / step) * step;
+    var numEl = $('[data-views-total-num]', totalEl);
+    if (shown < totalViews) {
+      var prefix = document.createElement('span');
+      prefix.className = 'works__total-unit';
+      prefix.textContent = 'mais de ';
+      numEl.appendChild(prefix);
+    }
+    /* a vírgula do Bodoni é fina demais e parece ponto: desenha com a fonte do texto */
+    viewsFmt.format(shown).split(/(,)/).forEach(function (part) {
+      if (part !== ',') { numEl.appendChild(document.createTextNode(part)); return; }
+      var sep = document.createElement('span');
+      sep.className = 'works__total-sep';
+      sep.textContent = ',';
+      numEl.appendChild(sep);
+    });
+    /* a linha de baixo tem os links das duas redes: vira "somadas no Instagram e no TikTok"
+       só quando as duas entraram na soma; senão continua "Ver mais no…" */
+    var lead = $('[data-views-lead]');
+    if (lead && usedNetworks.length === 2) lead.textContent = 'somadas no';
+    totalEl.title = totalViews.toLocaleString('pt-BR') + ' visualizações no total';
+    totalEl.hidden = false;
+  }
+
+  /* ------------------------------------------------------------
      Fita de vídeos: indicador do vídeo ativo.
      ------------------------------------------------------------ */
   var works = $('.works');

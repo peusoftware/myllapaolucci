@@ -859,6 +859,39 @@ html.motion .chapter[data-expand] > .chapter__bg {
 .reel__top { display: flex; justify-content: space-between; gap: var(--s-200); color: var(--fg-muted); }
 .reel__title { font-family: var(--font-text); font-weight: 600; font-size: 1.125rem; line-height: 1.4; }
 .reel__info { color: var(--fg-muted); }
+/* views do vídeo (js/views.js), no canto da moldura no lugar de "REEL_xx".
+   Pílula escura translúcida: continua legível sobre vídeos claros. */
+.frame__views {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-50);
+  margin: calc(var(--s-50) * -1) calc(var(--s-75) * -1);
+  padding: var(--s-50) var(--s-75);
+  border-radius: var(--r-pill);
+  background: rgb(40 33 31 / .55);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  color: var(--paper);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.frame__views svg { width: 8px; height: 8px; flex: none; color: var(--pink-100); }
+/* total de views somadas, na abertura da seção Trabalhos */
+.works__total { display: grid; gap: var(--s-75); }
+/* "somadas no Instagram ↗ e no TikTok ↗": os nomes das redes são os links */
+.works__more { color: var(--fg-muted); line-height: 1.5; }
+.works__more .link { min-height: 32px; margin-inline: var(--s-25); }
+.works__total-num {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--butter-100);
+  font-variant-numeric: lining-nums;
+}
+.works__total-sep { font-family: var(--font-text); font-weight: 600; font-size: .8em; }
+.works__total-unit { font-style: italic; font-size: .5em; letter-spacing: 0; color: var(--fg); }
+.works__updated { color: var(--fg-muted); }
 /* conta/cliente do vídeo: link para o perfil ou o vídeo original */
 .reel__link {
   display: inline-flex;
